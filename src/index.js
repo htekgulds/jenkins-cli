@@ -3,12 +3,18 @@ import { hideBin } from 'yargs/helpers'
 import jobs from './commands/jobs'
 import pkgJson from '../package.json'
 import login from './commands/login'
+import status from './commands/jobs/status'
 
 export default async function main () {
   await yargs(hideBin(process.argv))
     .usage('KUllanım: $0 <command>')
     .command('login [url]', 'Jenkins uygulamasına bağlantı ayarlarını kaydetmek için', {}, login)
-    .command('jobs', 'Jenkins işleri', {}, jobs)
+    .command('job', 'Jenkins işleri ile ilgili komutlar', yargs => {
+      return yargs
+        .command('list', 'Jenkins işlerini listele', {}, jobs)
+        .command('get <name>', 'Adı verilen Jenkins işinin durumunu göster', {}, status)
+        .demandCommand(1)
+    }, () => {})
     /**
      * option: --jenkins-url, --url
      * env: JENKINS_URL
