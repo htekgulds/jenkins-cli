@@ -1,4 +1,4 @@
-name: Publish Package to npmjs
+name: Publish
 on:
   push:
     tags:
@@ -17,6 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run package
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: softprops/action-gh-release@v1
