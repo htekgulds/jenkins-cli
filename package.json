@@ -8,7 +8,7 @@
   "scripts": {
     "build": "esbuild src/bin/jenkins.js --platform=node --bundle --outfile=dist/index.js",
     "watch": "npm run build -- --watch",
-    "package": "pkg dist/index.js -d -o pkg/jenkins --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
+    "package": "pkg dist/index.js -d -o pkg/jenkins --targets node20-linux-x64,node20-macos-x64,node20-win-x64",
     "lint": "standard"
   },
   "repository": {
@@ -40,8 +40,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@yao-pkg/pkg": "^5.12.1",
     "esbuild": "^0.23.1",
-    "pkg": "^5.8.1",
     "standard": "^17.1.0"
   }
 }
