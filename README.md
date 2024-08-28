@@ -10,6 +10,19 @@ npm link
 
 ## Usage
 
+First connect to Jenkins server (save login info to config file):
+
+```sh
+jenkins login http://jenkins.mycompany.com
+# Username?
+# Password?
+# Connection successful!
+
+# connection details will be saved into a json config file so other commands can use it
+```
+
+Now we can use the commands:
+
 ```sh
 # List of Jenkins jobs
 jenkins job list
