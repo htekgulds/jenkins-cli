@@ -1,13 +1,6 @@
 import chalk from 'chalk'
-import { COLORS, createClient } from '../../lib/jenkins/config'
 import { createStandardTable } from '../../lib/table/standard-table'
-
-function mapJob (job) {
-  return {
-    name: job.name,
-    status: COLORS[job.color]
-  }
-}
+import getJenkinsJobs from '../../lib/jenkins/getJenkinsJobs'
 
 function prettyStatus (status) {
   if (!status) return '-'
@@ -17,9 +10,7 @@ function prettyStatus (status) {
 }
 
 export default async function jobs () {
-  const jenkins = createClient()
-  const res = await jenkins.get('/api/json')
-  const jobs = res.data?.jobs?.map(mapJob)
+  const jobs = await getJenkinsJobs()
   const table = createStandardTable({
     head: ['Name', 'Status'],
     items: jobs.map(i => [i.name, prettyStatus(i.status)])
