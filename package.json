@@ -2,11 +2,12 @@
   "name": "jenkins-cli",
   "version": "0.1.1",
   "description": "Yet another Jenkins cli",
+  "type": "module",
   "bin": {
     "jenkins": "dist/index.js"
   },
   "scripts": {
-    "build": "esbuild src/bin/jenkins.js --platform=node --bundle --outfile=dist/index.js",
+    "build": "esbuild src/bin/jenkins.js --platform=node --bundle --packages=external --format=esm --outfile=dist/index.js",
     "watch": "npm run build -- --watch",
     "package": "pkg dist/index.js -d -o pkg/jenkins --targets node20-linux-x64,node20-macos-x64,node20-win-x64",
     "lint": "standard"

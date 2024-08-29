@@ -2,7 +2,9 @@ import axios from 'axios'
 import config from '../../config'
 import { httpsAgent } from '../../lib/axios/instance'
 import { logger } from '../../lib/logging'
-import { Input } from 'enquirer'
+import enquirer from 'enquirer'
+
+const Input = enquirer.Input
 
 export default async function login (argv) {
   if (!argv.url) {
